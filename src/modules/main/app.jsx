@@ -6,10 +6,11 @@ import io from "socket.io-client"
 
 import Menu from '../menu/menu'
 import Routes from '../main/routes'
+import * as Config from "./config";
 
 export default class App extends Component {
     componentWillMount() {
-        this.socket = io.connect("http://localhost:3003/todo")
+        this.socket = io.connect(Config.SOCKET_PATH)
     }
 
     componentWillUnmount() {
@@ -20,7 +21,7 @@ export default class App extends Component {
         return (
             <div className = 'container'>
                 <Menu socket={this.socket} />
-                <Routes />
+                <Routes socket={this.socket} />
             </div>
         )
     }

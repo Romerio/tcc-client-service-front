@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { search, alterList } from '../todo/todoActions'
+import * as LoginActions from '../login/actions/login-actions'
 
 class Menu extends Component {
     componentDidMount() {
@@ -18,10 +19,6 @@ class Menu extends Component {
         
         socket.on('reconnect', (attemptNumber) => {
             console.log('reconnected')
-        });
-
-        socket.on('todo.changeList', (result) => {
-            this.props.alterList(result)
         });
     }
 
@@ -56,13 +53,19 @@ class Menu extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
     return {
         list: state.todo.list
     }
+}*/
+
+// const mapDispatchToProps = (dispatch) => bindActionCreators({ search, alterList }, dispatch)
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(LoginActions, dispatch)
+    };
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ search, alterList }, dispatch)
-
 //module.exports = Menu
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default connect(null, mapDispatchToProps)(Menu)

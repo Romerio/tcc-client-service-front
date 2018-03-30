@@ -50,18 +50,17 @@ export function login(email, password) {
 	};
 }
 
-export function loginWithAuthenticator(userData) {
-	console.log("- loginWithAuthenticator dispatch");
+export function loginWithAuthenticator(userData) { // userId, name, email, token	
 	return (dispatch) => {
 		localStorage.setItem("token", userData.token);
 		localStorage.setItem("userId", userData.userId);
 
-		dispatch(loginSuccess({userId: userData.userId, token: userData.token}));
+		dispatch(loginSuccess(userData));
 		appHistory.push("/profile");
 	};
 }
 
-export function loginSuccess(data) {
+export function loginSuccess(data) { // userId, name, email, token
 	return {type: "LOGGED_SUCCESSFULLY", data};
 }
 
