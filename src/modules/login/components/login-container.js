@@ -19,9 +19,13 @@ class LoginContainer extends Component {
   }
 
   componentDidMount() {
+    const self = this
     const socket = this.props.socket
 
-    socket.emit('auth.getToken', (browserToken) => {
+    socket.emit('auth.getBrowserToken', (browserToken) => {
+      console.log('- browserToken:')
+      console.log(browserToken)
+
       this.setState({
         ...this.state, 
         qrcodePayload: {
@@ -31,9 +35,35 @@ class LoginContainer extends Component {
       })
     });
 
+    const browserTokenInverval = setInterval(() => {
+      socket.emit('auth.getBrowserToken', (browserToken) => {
+        console.log('- browserToken:')
+        console.log(browserToken)
+  
+        self.setState({
+          ...self.state, 
+          qrcodePayload: {
+            ...self.state.qrcodePayload,
+            browserToken
+          }
+        })
+      })
+    }, 25000)
+
+    console.log('-- browserTokenInverval: ' + browserTokenInverval)
+
+    this.setState({
+      ...this.state,
+      browserTokenInverval
+    })
+
     socket.on('auth.login', (authData) => {
       this.props.actions.loginWithAuthenticator(authData)
     });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.browserTokenInverval)
   }
 
   onChangeUsername(event) {
