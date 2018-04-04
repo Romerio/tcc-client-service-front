@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/webpack-dev-server/bin/webpack-dev-server --progress -p",
+    "start": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress -p",
     "dev": "webpack-dev-server --progress --colors --inline --hot",
     "production": "webpack-dev-server --progress -p"
   },
