@@ -1,29 +1,41 @@
 import React, { Component }  from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-//import * as LoginActions from '../actions/login-actions'
 import Profile from './profile'
 import PageHeader from '../../template/pageHeader'
+import loginStatus from '../../../helpers/loginStatus'
+import LoginContainer from '../../login/components/login-container'
 
 class ProfileContainer extends Component {
+  componentWillMount() {
+    const loginData = loginStatus()
+
+    this.setState({
+        ...this.state,
+        login: loginData
+    })
+}
+
   render() {
-    return (
-        <div>
-            <PageHeader name='Profile' small='User'></PageHeader>
-            <Profile
-                name={this.props.login.name || '---'}
-                email={this.props.login.email || '---'}
-            />
-        </div>
+    const loginData = this.props.login.isLoggedIn ? this.props.login : this.state.login
+
+    if(loginData.isLoggedIn) {
+          return (
+            <div>
+                <PageHeader name='Profile' small='User'></PageHeader>
+                <Profile
+                    name={loginData.name || '---'}
+                    email={loginData.email || '---'}
+                />
+            </div>
+        )
+      }
+
+      return (
+        <LoginContainer socket={this.props.socket} />
     )
   }
 };
-
-/*function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(LoginActions, dispatch)
-  };
-}*/
 
 const mapStateToProps = (state) => {
   return {

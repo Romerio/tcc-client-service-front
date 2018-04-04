@@ -50,8 +50,6 @@ class LoginContainer extends Component {
       })
     }, 25000)
 
-    console.log('-- browserTokenInverval: ' + browserTokenInverval)
-
     this.setState({
       ...this.state,
       browserTokenInverval

@@ -3,7 +3,14 @@ import _ from "lodash";
 import appHistory from "../../main/app-history";
 import * as Config from "../../main/config";
 import * as NotificationActions from "../../notification/actions/notification-actions";
-// import { showSnack, dismissSnack } from "react-redux-snackbar";
+
+const setLocalStorage = ({ token, userId, name, email}) => {
+	localStorage.setItem("loginData", JSON.stringify({ token, userId, name, email}));
+};
+
+const removeLocalStorage = () => {
+	localStorage.removeItem("loginData");
+};
 
 export function login(email, password) {
 	return (dispatch) => {
@@ -23,44 +30,44 @@ export function login(email, password) {
 
 				if (error) {
 					NotificationActions.show(response.body.error.title)(dispatch);
-					//console.log(Object.keys(error));
-					//console.log(response.body.error.title);
 					return dispatch(loginFailure(error));
 				}
 
-				var token = response.body.data.token;
-				var userId = response.body.data._id;
+				const loginData = {
+					userId: response.body.data._id,
+					name: response.body.data.name,
+					email: response.body.data.email,
+					token: response.body.data.token
+				};
 
-				if (token && userId) {
-					localStorage.setItem("token", token);
-					localStorage.setItem("userId", userId);
+				if (loginData.token && loginData.userId) {
+					setLocalStorage(loginData);
 
-					dispatch(loginSuccess({
-						userId: userId, 
-						name: response.body.data.name,
-						email: response.body.data.email,
-						token: token
-					}));
+					dispatch(loginSuccess(loginData));
 					appHistory.push("/profile");
 				} else {
 					NotificationActions.show("E-mail ou senha incorretos")(dispatch);
-					localStorage.removeItem("token");
+					removeLocalStorage();
 				}
 			});
 	};
 }
 
-export function loginWithAuthenticator(userData) { // userId, name, email, token	
+export function loginWithAuthenticator(userData) { 
 	return (dispatch) => {
-		localStorage.setItem("token", userData.token);
-		localStorage.setItem("userId", userData.userId);
+		setLocalStorage(userData);
 
 		dispatch(loginSuccess(userData));
 		appHistory.push("/profile");
 	};
 }
 
-export function loginSuccess(data) { // userId, name, email, token
+export function logout(data) { 	
+	removeLocalStorage();
+	return {type: "LOGGED_OUT", data};
+}
+
+export function loginSuccess(data) { 
 	return {type: "LOGGED_SUCCESSFULLY", data};
 }
 

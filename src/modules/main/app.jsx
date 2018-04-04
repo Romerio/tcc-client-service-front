@@ -4,7 +4,7 @@ import "../template/custom.css";
 import React, { Component }  from 'react';
 import io from "socket.io-client"
 
-import Menu from '../menu/menu'
+import MenuContainer from '../menu/menu-container'
 import Routes from '../main/routes'
 import * as Config from "./config";
 
@@ -20,7 +20,7 @@ export default class App extends Component {
     render(){
         return (
             <div className = 'container'>
-                <Menu socket={this.socket} />
+                <MenuContainer socket={this.socket} />
                 <Routes socket={this.socket} />
             </div>
         )

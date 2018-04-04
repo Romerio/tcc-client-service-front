@@ -1,10 +1,16 @@
-import Immutable from "immutable";
+/*import Immutable from "immutable";
 
 const initialState = new Immutable.Map({
 	isLoggingIn: false,
 	isLoggedIn: false,
 	error: null
-});
+});*/
+
+const initialState = {
+	isLoggingIn: false,
+	isLoggedIn: false,
+	error: null
+};
 
 function loginReducer(state = initialState, action) {
 	switch (action.type) {
@@ -19,6 +25,9 @@ function loginReducer(state = initialState, action) {
 		break;
 	case "LOGGED_FAILURE":
 		return state;
+		break;
+	case "LOGGED_OUT":
+		return initialState;
 		break;
 	default:
 		return state;
