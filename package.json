@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot",
     "production": "NODE_ENV=production webpack --progress -p",
-    "start": "npm run production"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
