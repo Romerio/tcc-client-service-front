@@ -22,7 +22,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			"process.env": {
 				NODE_ENV: process.env.NODE_ENV,
-				API_HOST: process.env.API_HOST,
+				API_HOST: process.env.API_HOST
 			}
 		})
 	],
