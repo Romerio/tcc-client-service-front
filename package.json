@@ -9,7 +9,7 @@
     "test": "NODE_ENV=production mocha tests/**/*.spec.js --compilers js:babel-core/register",
     "clean": "rimraf dist",
     "dev": "webpack-dev-server --progress --colors --inline --hot",
-    "production": "NODE_ENV=production API_HOST=https://front-client-a.herokuapp.com webpack --progress -p",
+    "production": "NODE_ENV=production webpack --progress -p",
     "start": "npm run production && NODE_ENV=production node server.js"
   },
   "repository": {
