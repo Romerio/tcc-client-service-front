@@ -17,7 +17,7 @@ export function login(email, password) {
 		// NotificationActions.show("Loging in. Please wait.")(dispatch);
 
 		request
-			.post(Config.API_DOMAIN + "api/users/login")
+			.post(Config.API_DOMAIN + "/api/users/login")
 			.send({
 				email: email,
 				password: password
