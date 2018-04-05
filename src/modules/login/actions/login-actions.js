@@ -24,7 +24,8 @@ export function login(email, password) {
 			})
 			.end((error, response) => {
 				if (_.isUndefined(response)) {
-					NotificationActions.show("Erro")(dispatch);
+					console.log(error);
+					NotificationActions.show(error.description)(dispatch);
 					return dispatch(loginFailure("Error: No response"));
 				}
 
