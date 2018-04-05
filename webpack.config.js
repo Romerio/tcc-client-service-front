@@ -21,8 +21,8 @@ module.exports = {
 		new extractTextPlugin("app.css"),
 		new webpack.DefinePlugin({
 			"process.env": {
-				NODE_ENV: process.env.NODE_ENV,
-				API_HOST: process.env.API_HOST
+				NODE_ENV: "produtction",
+				API_HOST: "https://back-client-a.herokuapp.com"
 			}
 		})
 	],
