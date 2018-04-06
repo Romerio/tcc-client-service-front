@@ -19,12 +19,13 @@ module.exports = {
 	},
 	plugins: [
 		new extractTextPlugin("app.css"),
-		new webpack.EnvironmentPlugin({
-			"process.env": {
-				NODE_ENV: "produtction",
-				API_HOST: "https://back-client-a.herokuapp.com"
-			}
-		})
+		new webpack.DefinePlugin({
+			"process.env": JSON.stringify({ 
+				NODE_ENV: process.env.NODE_ENV || "development",
+				API_HOST: process.env.API_HOST ||  "http://localhost:3000",
+				TEST: process.env.TEST
+			})
+		}),
 	],
 	module: {
 		loaders: [{
