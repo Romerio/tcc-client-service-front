@@ -9,7 +9,7 @@
     "build": "npm run build:dev",
     "test": "NODE_ENV=production mocha tests/**/*.spec.js --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "dev": "webpack-dev-server --progress --colors --inline --hot",
+    "dev": "webpack-dev-server --config webpack.config.js --progress --colors --inline --hot",
     "production": "npm run build:production && node server.js",
     "start": "npm run build:production && node server.js"
   },
