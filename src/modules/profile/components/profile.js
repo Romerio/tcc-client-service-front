@@ -17,7 +17,7 @@ class Profile extends React.Component {
     const qrcodeData = {
       userId: this.props.userId,
       token: this.props.token,
-      action: 1,
+      // action: 1,
       service: process.env.SERVICE_NAME || 'Facebook A'
     }
 
