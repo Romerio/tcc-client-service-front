@@ -18,7 +18,7 @@ class Profile extends React.Component {
       userId: this.props.userId,
       token: this.props.token,
       // action: 1,
-      service: process.env.SERVICE_NAME || 'Facebook A'
+      service: process.env.SERVICE_NAME || 'xxx A'
     }
 
     return (

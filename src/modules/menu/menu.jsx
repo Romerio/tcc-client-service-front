@@ -40,7 +40,7 @@ class Menu extends Component {
                 <div className='container'>
                     <div className='navbar-header'>
                         <a className='navbar-brand' href='#'>
-                            <i className='fa fa-calendar-check-o'></i> Facebook A
+                            <i className='fa fa-calendar-check-o'></i> {process.env.SERVICE_NAME || 'xxx A'}
                         </a>
                     </div>
                     <ConditionalItems isLoggedIn={login.isLoggedIn} />

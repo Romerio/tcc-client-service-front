@@ -12,7 +12,7 @@ class LoginContainer extends Component {
         email: '',
         password: '',
         qrcodePayload : {
-          service: process.env.SERVICE_NAME || 'Facebook A',
+          service: process.env.SERVICE_NAME || 'xxx A',
           browserToken: 'Hello world!', 
       }
     };
