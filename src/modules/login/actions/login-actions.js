@@ -5,7 +5,12 @@ import * as Config from "../../main/config";
 import * as NotificationActions from "../../notification/actions/notification-actions";
 
 const setLocalStorage = ({ token, userId, name, email}) => {
-	localStorage.setItem("loginData", JSON.stringify({ token, userId, name, email}));
+	localStorage.setItem("loginData", JSON.stringify({ 
+		token,
+		userId,
+		name,
+		email
+	}));
 };
 
 const removeLocalStorage = () => {

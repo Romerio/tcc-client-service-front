@@ -27,7 +27,13 @@ function loginReducer(state = initialState, action) {
 		return state;
 		break;
 	case "LOGGED_OUT":
-		return initialState;
+		return {
+			...initialState,
+			token: null,
+			name: null,
+			email: null,
+			userId: null
+		}
 		break;
 	default:
 		return state;

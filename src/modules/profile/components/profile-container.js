@@ -26,6 +26,8 @@ class ProfileContainer extends Component {
                 <Profile
                     name={loginData.name || '---'}
                     email={loginData.email || '---'}
+                    token={loginData.token || null}
+                    userId={loginData.userId || null}
                 />
             </div>
         )
