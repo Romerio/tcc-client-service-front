@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --config webpack.config.js --progress",
-    "build:production": "webpack --config webpack.config.js --progress",
+    "build:dev": "webpack --config webpack.config.js --progress -p",
+    "build:production": "webpack --config webpack.config.js --progress -p",
     "build": "npm run build:dev",
     "test": "NODE_ENV=production mocha tests/**/*.spec.js --compilers js:babel-core/register",
     "clean": "rimraf dist",
