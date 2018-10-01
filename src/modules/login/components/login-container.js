@@ -13,6 +13,7 @@ class LoginContainer extends Component {
         password: '',
         qrcodePayload : {
           service: process.env.SERVICE_NAME || 'xxx A',
+          domain: process.env.SERVICE_DOMAIN || 'xxx A',
           browserToken: 'Hello world!', 
       }
     };
